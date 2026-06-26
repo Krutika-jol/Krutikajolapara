@@ -32,7 +32,7 @@
   --ease:cubic-bezier(.22,.61,.36,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
 body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.66;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -303,6 +303,98 @@ footer p{font-size:.84rem}
   .cform{padding:1.6rem}
   .pf-badge{left:-8px}
 }
+/* ============================================================
+   ENHANCED RESPONSIVE LAYER  (mobile + tablet, desktop untouched)
+   These blocks come last so they win over earlier equal-specificity rules.
+   ============================================================ */
+
+/* prevent any element from forcing horizontal scroll on phones */
+@media(max-width:1000px){
+  img,svg,video,canvas{max-width:100%}
+  .wrap{width:100%}
+}
+
+/* Large phones / small tablets */
+@media(max-width:760px){
+  /* tighter vertical rhythm than the desktop 110px */
+  .about,.journey,.exp,.init,.dir,.gal,.contact{padding:72px 0}
+  .hero{padding:104px 0 0}
+  .shead{margin-bottom:2.4rem}
+  /* hero photo block: calm the decorative pieces, centre the badge */
+  .hero-grid{gap:34px;padding-bottom:54px}
+  .hero-photo{margin-bottom:30px}
+  .pf{width:min(320px,78vw)}
+  .pf-accent{width:min(320px,78vw);top:16px;right:-14px}
+  .pf-badge{left:50%;right:auto;transform:translateX(-50%);bottom:-22px}
+  /* equal-width hero buttons that wrap gracefully */
+  .h-cta .btn{flex:1 1 auto;justify-content:center}
+}
+
+/* Phones */
+@media(max-width:620px){
+  .h-roles{font-size:.97rem;gap:.4rem .65rem}
+  .h-bio{font-size:1rem}
+  /* gallery captions can't rely on hover on touch screens — show them */
+  .gi::after{opacity:1}
+  .gi .cap{opacity:1;transform:none}
+  /* roomier touch targets */
+  .filters button{padding:.55rem 1rem;min-height:42px}
+  .nav-btn{padding:.65rem 1.15rem}
+  /* lightbox: move arrows to the bottom so they don't cover the photo */
+  .lb{padding:14px}
+  .lb img{max-width:94vw;max-height:68vh}
+  .lb-cap{bottom:74px;font-size:.85rem}
+  .lb-x{top:14px;right:14px;width:40px;height:40px}
+  .lb-n{top:auto;bottom:16px;transform:none;width:46px;height:46px;font-size:1.5rem}
+  .lb-p{left:calc(50% - 56px)}
+  .lb-nx{right:calc(50% - 56px)}
+}
+
+/* Small phones */
+@media(max-width:480px){
+  .wrap{padding:0 18px}
+  .about,.journey,.exp,.init,.dir,.gal,.contact{padding:58px 0}
+  .hero{padding:96px 0 0}
+  .hero h1{font-size:clamp(2.4rem,13vw,3.1rem)}
+  .facts{grid-template-columns:1fr;gap:1rem}
+  .ribbon-in{grid-template-columns:1fr 1fr}
+  .gal-grid{columns:2;column-gap:10px}
+  .gi{margin-bottom:10px}
+  .init-body{padding:1.4rem 1.4rem 1.5rem}
+  .cform{padding:1.5rem}
+  .quote{padding:1.1rem 1.3rem;font-size:1.06rem}
+  /* directory headers stack cleanly */
+  .dir-head{flex-wrap:wrap;gap:.5rem}
+  .dir-head .cnt{margin-left:0}
+  /* buttons full width for easy tapping */
+  .h-cta{flex-direction:column}
+  .h-cta .btn{width:100%}
+}
+
+/* Very small phones */
+@media(max-width:380px){
+  .gal-grid{columns:1}
+  .ribbon-in{grid-template-columns:1fr}
+  .rb,.rb:first-child{padding:1.15rem 0;text-align:center;border-left:0}
+  .h-chips{gap:.45rem}
+  .h-chip{font-size:.78rem;padding:.45rem .75rem}
+  .pf-badge .n{font-size:1.45rem}
+  .brand b{font-size:1rem}
+}
+
+/* Touch / no-hover devices (e.g. tablets) — reveal gallery captions */
+@media(hover:none){
+  .gi::after{opacity:1}
+  .gi .cap{opacity:1;transform:none}
+}
+
+/* Landscape phones — trim the tall hero so content shows sooner */
+@media(max-height:520px) and (orientation:landscape){
+  .hero{padding:88px 0 0}
+  .hero-grid{padding-bottom:34px}
+  .about,.journey,.exp,.init,.dir,.gal,.contact{padding:56px 0}
+}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
@@ -731,12 +823,9 @@ const G=[
  {f:'police_training_1.jpg',c:'Technology training, police department',k:'police'},
  {f:'police_training_2.jpg',c:'Cyber &amp; tech training for officers',k:'police'},
  {f:'police_office.jpg',c:'At a police department office',k:'police'},
- {f:'rpf_award.jpg',c:'RPF Bhavnagar App launch',k:'police'},
  {f:'rpf_stage.jpg',c:'On stage — RPF Bhavnagar App launch',k:'police'},
  {f:'cybercrime_train_1.jpg',c:'Cyber Crime App Training, Surat',k:'training'},
  {f:'cybercrime_train_2.jpg',c:'Cyber Crime App Training session',k:'training'},
- {f:'surat_cp_train.jpg',c:'Training at the Surat Commissioner of Police Dept.',k:'training'},
- {f:'working_candid.jpg',c:'On-ground project execution',k:'training'},
  {f:'training_audience.jpg',c:'Addressing a training audience',k:'training'},
  {f:'office_handshake.jpg',c:'Partnership handshake',k:'training'},
  {f:'savebirds_demo.jpg',c:'Save Birds — Forest Department initiative',k:'forest'},
